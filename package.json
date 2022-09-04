@@ -1,0 +1,22 @@
+{
+  "name": "webstat",
+  "version": "0.0.0",
+  "description": "",
+  "main": "",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Morr0/WebStat.git"
+  },
+  "author": "Rami Hikmat",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Morr0/WebStat/issues"
+  },
+  "homepage": "https://github.com/Morr0/WebStat#readme",
+  "devDependencies": {
+    "@nx-go/nx-go": "^2.6.0",
+    "nx": "^14.6.4",
+    "prettier": "2.7.1"
+  }
+}
