@@ -11,6 +11,7 @@ type CreateStatResponse struct {
 }
 
 func CollectStat(req events.APIGatewayProxyRequest) (*events.APIGatewayProxyResponse, error) {
+	println("Body:", req.Body)
 	return CreateResponse(http.StatusOK, CreateStatResponse{
 		Message: "Created",
 	})
