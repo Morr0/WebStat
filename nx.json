@@ -1,3 +1,7 @@
 {
-  "npmScope": "webstat"
+  "npmScope": "webstat",
+  "workspaceLayout": {
+    "appsDir": "apps",
+    "libsDir": "libs"
+  }
 }
