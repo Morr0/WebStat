@@ -9,6 +9,7 @@ import (
 )
 
 func main() {
+	println("Started app")
 	lambda.Start(handler)
 }
 
