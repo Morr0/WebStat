@@ -5,7 +5,7 @@ import (
 
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/aws/aws-lambda-go/lambda"
-	"github.com/morr0/webstat/apps/webstat-main/controllers"
+	"github.com/morr0/webstat/apps/webstat-main/src/controllers"
 )
 
 func main() {
