@@ -1,6 +1,8 @@
 package controllers
 
 import (
+	"net/http"
+
 	"github.com/aws/aws-lambda-go/events"
 )
 
@@ -9,7 +11,7 @@ type CreateStatResponse struct {
 }
 
 func CollectStat(req events.APIGatewayProxyRequest) (*events.APIGatewayProxyResponse, error) {
-	return CreateResponse(200, CreateStatResponse{
+	return CreateResponse(http.StatusOK, CreateStatResponse{
 		Message: "Created",
 	})
 }

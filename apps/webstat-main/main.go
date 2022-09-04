@@ -1,6 +1,8 @@
 package main
 
 import (
+	"net/http"
+
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/aws/aws-lambda-go/lambda"
 	"github.com/morr0/webstat/apps/webstat-main/controllers"
@@ -17,7 +19,7 @@ func handler(req events.APIGatewayProxyRequest) (*events.APIGatewayProxyResponse
 	default:
 		headers := make(map[string]string)
 		return &events.APIGatewayProxyResponse{
-			StatusCode: 405,
+			StatusCode: http.StatusMethodNotAllowed,
 			Headers:    headers,
 			Body:       "",
 		}, nil
