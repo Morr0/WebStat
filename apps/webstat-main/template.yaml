@@ -18,8 +18,9 @@ Resources:
       Architectures:
         - x86_64
       Events:
-        CatchAll:
+        Http:
           Type: HttpApi # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
           Properties:
             Path: /v1/stat
             Method: POST
+            TimeoutInMillis: 3000
