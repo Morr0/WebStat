@@ -15,10 +15,7 @@
   },
   "homepage": "https://github.com/Morr0/WebStat#readme",
   "devDependencies": {
-    "@nx-go/nx-go": "^2.6.0",
     "nx": "^14.6.4",
-    "prettier": "2.7.1",
-    "serverless": "^3.22.0",
-    "serverless-offline": "^10.0.0"
+    "prettier": "2.7.1"
   }
 }
