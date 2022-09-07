@@ -13,14 +13,15 @@ func main() {
 	lambda.Start(handler)
 }
 
-func handler(req events.APIGatewayProxyRequest) (*events.APIGatewayProxyResponse, error) {
-	switch req.HTTPMethod {
-	case "POST":
-		return controllers.CollectStat(req)
+func handler(req events.APIGatewayV2HTTPRequest) (*events.APIGatewayV2HTTPResponse, error) {
+	switch req.RawPath {
+	case "/v1/stat":
+		return controllers.HandleStat(req)
+
 	default:
 		headers := make(map[string]string)
-		return &events.APIGatewayProxyResponse{
-			StatusCode: http.StatusMethodNotAllowed,
+		return &events.APIGatewayV2HTTPResponse{
+			StatusCode: http.StatusOK,
 			Headers:    headers,
 			Body:       "",
 		}, nil
