@@ -31,12 +31,14 @@ func CollectStat(request CollectStatRequest, awsSession session.Session) int {
 	}
 
 	tableName := utilities.GetStatsTableName()
+	println("Table name:", tableName)
 	reqInput := &dynamodb.PutItemInput{
 		Item:      dynamoObj,
 		TableName: &tableName,
 	}
 	_, putErr := client.PutItem(reqInput)
 	if putErr != nil {
+		println("Error Here", putErr.Error())
 		return http.StatusInternalServerError
 	}
 

@@ -22,6 +22,12 @@ func collectStat(req events.APIGatewayV2HTTPRequest, awsSession session.Session)
 		})
 	}
 
+	if len(request.Url) == 0 {
+		return CreateResponse(http.StatusBadRequest, CreateStatResponse{
+			Message: "{}",
+		})
+	}
+
 	statusCode := handlers.CollectStat(request, awsSession)
 
 	return CreateResponse(statusCode, CreateStatResponse{
