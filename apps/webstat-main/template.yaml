@@ -44,3 +44,10 @@ Resources:
       Environment:
         Variables:
           StatsTable: !Ref StatsTable
+      Policies:
+        - Version: '2012-10-17'
+          Statement: 
+            - Effect: 'Allow'
+              Action:
+                - 'dynamodb:PutItem'
+              Resource: !GetAtt StatsTable.Arn

@@ -12,15 +12,15 @@ import (
 )
 
 type CollectStatRequest struct {
-	Url string `json:"url"`
+	Url string
 }
 
 func CollectStat(request CollectStatRequest, awsSession session.Session) int {
 	timestamp := time.Now().UnixMicro()
 
 	stat := models.StatModel{
-		Timestamp: timestamp,
 		Url:       request.Url,
+		CreatedAt: timestamp,
 	}
 
 	client := dynamodb.New(&awsSession)
@@ -31,14 +31,12 @@ func CollectStat(request CollectStatRequest, awsSession session.Session) int {
 	}
 
 	tableName := utilities.GetStatsTableName()
-	println("Table name:", tableName)
 	reqInput := &dynamodb.PutItemInput{
 		Item:      dynamoObj,
 		TableName: &tableName,
 	}
 	_, putErr := client.PutItem(reqInput)
 	if putErr != nil {
-		println("Error Here", putErr.Error())
 		return http.StatusInternalServerError
 	}
 
