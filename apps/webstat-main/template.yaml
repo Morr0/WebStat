@@ -9,6 +9,24 @@ Globals:
     Timeout: 3
 
 Resources:
+  StatsTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: WebstatStats
+      KeySchema:
+        - AttributeName: Url
+          KeyType: HASH
+        - AttributeName: CreatedAt
+          KeyType: SORT
+      AttributeDefinitions:
+        -
+          AttributeName: Url
+          AttributeType: S
+        - 
+          AttributeName: CreatedAt
+          AttributeType: N
+      BillingMode: PAY_PER_REQUEST
+      
   CollectStat:
     Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
     Properties:
@@ -23,3 +41,6 @@ Resources:
           Properties:
             Path: /v1/stat
             Method: POST
+      Environment:
+        Variables:
+          StatsTable: !Ref StatsTable
