@@ -17,7 +17,7 @@ Resources:
         - AttributeName: Url
           KeyType: HASH
         - AttributeName: CreatedAt
-          KeyType: SORT
+          KeyType: RANGE
       AttributeDefinitions:
         -
           AttributeName: Url
