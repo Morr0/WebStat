@@ -3,7 +3,12 @@ Transform: AWS::Serverless-2016-10-31
 Description: >
   WebStat
 
-# More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
+Parameters:
+  StatsTableName:
+    Type: String
+    Default: "WebstatStats"
+  
+
 Globals:
   Function:
     Timeout: 3
@@ -12,7 +17,7 @@ Resources:
   StatsTable:
     Type: AWS::DynamoDB::Table
     Properties:
-      TableName: WebstatStats
+      TableName: !Ref StatsTableName
       KeySchema:
         - AttributeName: Url
           KeyType: HASH
@@ -28,22 +33,23 @@ Resources:
       BillingMode: PAY_PER_REQUEST
       
   CollectStat:
-    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Type: AWS::Serverless::Function
     Properties:
       CodeUri: src/
       Handler: src
       Runtime: go1.x
+      MemorySize: 256
       Architectures:
         - x86_64
       Events:
-        Http:
-          Type: HttpApi # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+        HttpApi:
+          Type: HttpApi
           Properties:
             Path: /v1/stat
             Method: POST
       Environment:
         Variables:
-          StatsTable: !Ref StatsTable
+          StatsTable: !Ref StatsTableName
       Policies:
         - Version: '2012-10-17'
           Statement: 

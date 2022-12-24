@@ -33,11 +33,7 @@ func handler(req events.APIGatewayV2HTTPRequest) (*events.APIGatewayV2HTTPRespon
 		return controllers.HandleStat(req, *awsSession)
 
 	default:
-		headers := make(map[string]string)
-		return &events.APIGatewayV2HTTPResponse{
-			StatusCode: http.StatusOK,
-			Headers:    headers,
-			Body:       "",
-		}, nil
+		var resObj struct{}
+		return controllers.CreateResponse(http.StatusMethodNotAllowed, resObj)
 	}
 }

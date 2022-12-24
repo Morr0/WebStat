@@ -11,3 +11,9 @@ Deploy
 ```
 sam deploy
 ```
+
+Run Locally
+
+```
+sam local start-api
+```
