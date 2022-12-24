@@ -7,9 +7,6 @@ Parameters:
   StatsTableName:
     Type: String
     Default: "WebstatStats"
-  WhitelistedWebsite:
-    Type: String
-    Default: "www.ramihikmat.net"
   
 
 Globals:
@@ -41,6 +38,7 @@ Resources:
       CodeUri: src/
       Handler: src
       Runtime: go1.x
+      MemorySize: 256
       Architectures:
         - x86_64
       Events:
@@ -49,10 +47,6 @@ Resources:
           Properties:
             Path: /v1/stat
             Method: POST
-            CorsConfiguration:
-              AllowMethods: "'POST'"
-              AllowHeaders: "'Content-Type'"
-              AllowOrigin: !Ref WhitelistedWebsite
       Environment:
         Variables:
           StatsTable: !Ref StatsTableName
